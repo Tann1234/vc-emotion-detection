@@ -42,11 +42,11 @@ def save_metrics(path,metrics_dict):
         json.dump(metrics_dict, f, indent=4)
 
 def main():
-    clf=load_model('emotion-detection/models/model.pkl')
-    X_test, y_test=load_data('./emotion-detection/data/processed/test_bow.csv')
+    clf=load_model('models/model.pkl')
+    X_test, y_test=load_data('./data/processed/test_bow.csv')
     y_pred, y_pred_proba=make_prediction(clf,X_test)
     metrics_dict=metrics(y_test, y_pred, y_pred_proba)
-    save_metrics('emotion-detection/reports/metrics.json', metrics_dict)
+    save_metrics('reports/metrics.json', metrics_dict)
 
 
 

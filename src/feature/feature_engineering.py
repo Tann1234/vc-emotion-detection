@@ -42,10 +42,10 @@ def save_data(data_path, train_df, test_df):
 
 def main():
     max_features=load_params('parmas.yaml')
-    train_data, test_data=load_data('./emotion-detection/data/interim/train_processed.csv', './emotion-detection/data/interim/test_processed.csv')
+    train_data, test_data=load_data('./data/interim/train_processed.csv', './data/interim/test_processed.csv')
     X_train, y_train, X_test, y_test=bag_of_words(train_data, test_data)
     train_df, test_df=count_vectorize(X_train, y_train, y_test,X_test, max_features)
-    data_path = os.path.join('emotion-detection','data', 'processed')
+    data_path = os.path.join('data', 'processed')
 
     save_data(data_path, train_df, test_df)
 

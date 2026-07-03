@@ -70,10 +70,10 @@ def save_data(data_path, train_data, test_data):
 def main():
     try:
         test_size = load_params('params.yaml')
-        df = read_data('emotion-detection/src/data/Emotion_final.csv')
+        df = read_data('src/data/Emotion_final.csv')
         final_df = process_data(df)
         train_data, test_data = train_test_split(final_df, test_size=test_size, random_state=42)
-        data_path = os.path.join('emotion-detection','data', 'raw')
+        data_path = os.path.join('data', 'raw')
         save_data(data_path, train_data, test_data)
         print("Data ingestion completed successfully.")
     except Exception as e:

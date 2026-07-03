@@ -21,14 +21,14 @@ def train_model(X_train,y_train, params):
     return clf
 
 
-def save_model(clf, model_path="emotion-detection/models/model.pkl"):
+def save_model(clf, model_path="models/model.pkl"):
     pickle.dump(clf, open(model_path, "wb"))
 
 
 def main():
     params=load_params('params.yaml')
     
-    X_train, y_train=load_data('./emotion-detection/data/processed/train_bow.csv')
+    X_train, y_train=load_data('./data/processed/train_bow.csv')
     clf=train_model(X_train, y_train,params)
     save_model(clf)
 

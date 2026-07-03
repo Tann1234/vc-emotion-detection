@@ -1,41 +1,44 @@
 stages:
   data_ingestion:
-    cmd: python emotion-detection/src/data/data_ingestion.py
+    cmd: python src/data/data_ingestion.py
     deps:
-      - emotion-detection/src/data/data_ingestion.py
-      - emotion-detection/src/data/Emotion_final.csv
+      - src/data/data_ingestion.py
+      - src/data/Emotion_final.csv
+
     outs:
-      - emotion-detection/data/raw
+      - data/raw
   data_preprocessing:
-    cmd: python emotion-detection/src/data/data_preprocessing.py
+    cmd: python src/data/data_preprocessing.py
     deps:
-    - emotion-detection/data/raw
-    - emotion-detection/src/data/data_preprocessing.py
+      - data/raw
+      - src/data/data_preprocessing.py
     outs:
-    - emotion-detection/data/interim
+    - data/interim
   feature_engineering:
-    cmd: python emotion-detection/src/features/feature_engineering.py
+    cmd: python src/feature/feature_engineering.py
     deps:
-    - emotion-detection/data/interim
-    - emotion-detection/src/features/feature_engineering.py
+    - data/interim
+    - src/feature/feature_engineering.py
     params:
     - feature_engineering.max_features
     outs:
-    - emotion-detection/data/processed
+    - data/processed
   model_building:
-    cmd: python emotion-detection/src/models/model_building.py
+    cmd: python src/model/model_building.py
     deps:
-    - emotion-detection/data/processed
-    - emotion-detection/src/models/model_building.py
+    - data/processed
+    - src/model/model_building.py
     params:
     - model_building.n_estimators
     - model_building.learning_rate
     outs:
-    - emotion-detection/models/model.pkl
+    - models/model.pkl
   model_evaluation:
-    cmd: python emotion-detection/src/models/model_evaluation.py
+    cmd: python src/model/model_evaluation.py
     deps:
-    - emotion-detection/models/model.pkl
+    - models/model.pkl
+    metrics:
+    - reports/metrics.json
 
 
 

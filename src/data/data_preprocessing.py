@@ -77,10 +77,10 @@ def save_data(data_path, train_processed_data, test_processed_data):
     test_processed_data.to_csv(os.path.join(data_path, 'test_processed.csv'), index=False)
 
 def main():
-    train_data, test_data = load_data('./emotion-detection/data/raw/train.csv', './emotion-detection/data/raw/test.csv')
+    train_data, test_data = load_data('./data/raw/train.csv', './data/raw/test.csv')
     train_processed_data=normalize_text(train_data)
     test_processed_data=normalize_text(test_data)
-    data_path = os.path.join('emotion-detection','data', 'interim')
+    data_path = os.path.join('data', 'interim')
     save_data(data_path, train_processed_data, test_processed_data)
 
 if __name__=='__main__':
