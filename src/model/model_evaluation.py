@@ -43,7 +43,7 @@ def save_metrics(path,metrics_dict):
 
 def main():
     clf=load_model('models/model.pkl')
-    X_test, y_test=load_data('./data/processed/test_bow.csv')
+    X_test, y_test=load_data('./data/processed/test_tfidf.csv')
     y_pred, y_pred_proba=make_prediction(clf,X_test)
     metrics_dict=metrics(y_test, y_pred, y_pred_proba)
     save_metrics('reports/metrics.json', metrics_dict)
